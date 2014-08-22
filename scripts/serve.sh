@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+echo ">>>> Setting up Nginx configuration for $1"
 
 block="server {
     listen 80;
