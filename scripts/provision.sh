@@ -96,12 +96,12 @@ sed -i '/^bind-address/s/bind-address.*=.*/bind-address = 10.0.2.15/' /etc/mysql
 mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO root@'10.0.2.2' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
 service mysql restart > /dev/null
 
-echo ">>>> Creating murvolocal MySQL user"
-mysql --user="root" --password="secret" -e "CREATE USER 'murvolocal'@'10.0.2.2' IDENTIFIED BY 'secret';"
-mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO 'murvolocal'@'10.0.2.2' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
-mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO 'murvolocal'@'%' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
+echo ">>>> Creating tenderlocal MySQL user"
+mysql --user="root" --password="secret" -e "CREATE USER 'tenderlocal'@'10.0.2.2' IDENTIFIED BY 'secret';"
+mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO 'tenderlocal'@'10.0.2.2' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
+mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO 'tenderlocal'@'%' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
 mysql --user="root" --password="secret" -e "FLUSH PRIVILEGES;"
-mysql --user="root" --password="secret" -e "CREATE DATABASE murvolocal;"
+mysql --user="root" --password="secret" -e "CREATE DATABASE tenderlocal;"
 service mysql restart > /dev/null
 
 echo ">>>> Installing Redis"
