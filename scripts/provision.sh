@@ -41,7 +41,7 @@ ln -sf /etc/php5/mods-available/mailparse.ini /etc/php5/cli/conf.d/20-mailparse.
 echo ">>>> Installing Composer"
 curl -sS https://getcomposer.org/installer | php &> /dev/null || exit 1
 mv composer.phar /usr/local/bin/composer
-printf "\nPATH=\"/home/vagrant/.composer/vendor/bin:\$PATH\"\n" | tee -a /home/vagrant/.profile
+printf "\nPATH=\"/home/vagrant/.composer/vendor/bin:\$PATH\"\n" >> /home/vagrant/.profile
 
 echo ">>>> Configuring PHP5 CLI"
 sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php5/cli/php.ini
