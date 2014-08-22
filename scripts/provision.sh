@@ -11,6 +11,10 @@ echo "vm.swappiness=10" >> /etc/sysctl.conf
 sysctl vm.vfs_cache_pressure=50 > /dev/null
 echo "vm.vfs_cache_pressure = 50" >> /etc/sysctl.conf
 
+echo ">>>> Generating the locales"
+locale-gen en_US.UTF-8 > /dev/null
+export LANG=en_US.UTF-8
+
 echo ">>>> Adding required repos"
 apt-get install -y --force-yes -qq software-properties-common > /dev/null
 apt-add-repository -y ppa:nginx/stable > /dev/null
