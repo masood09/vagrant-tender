@@ -14,7 +14,7 @@ folders:
 
 sites:
     - map: tender.app
-      to: /home/vagrant/tender
+      to: /home/vagrant/tender/public
 
 variables:
     - key: APP_ENV
