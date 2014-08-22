@@ -111,7 +111,7 @@ echo ">>>> Installing Mailcacher"
 apt-get -y --force-yes -qq install ruby-dev &> /dev/null || exit 1
 gem install --no-rdoc --no-ri mailcatcher &> /dev/null || exit 1
 echo "@reboot $(which mailcatcher) --ip=0.0.0.0" >> /etc/crontab
-update-rc.d cron defaults
+update-rc.d cron defaults &> /dev/null || exit 1
 
 echo ">>>> Starting Mailcacher"
 /usr/bin/env $(which mailcatcher) --ip=0.0.0.0
