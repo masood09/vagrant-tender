@@ -114,7 +114,7 @@ echo "@reboot $(which mailcatcher) --ip=0.0.0.0" >> /etc/crontab
 update-rc.d cron defaults &> /dev/null || exit 1
 
 echo ">>>> Starting Mailcacher"
-/usr/bin/env $(which mailcatcher) --ip=0.0.0.0
+/usr/bin/env $(which mailcatcher) --ip=0.0.0.0 &> /dev/null || exit 1
 
 echo ">>>> Copying bash aliases"
 cp /vagrant/aliases /home/vagrant/.bash_aliases
