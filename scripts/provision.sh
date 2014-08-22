@@ -3,8 +3,8 @@
 echo ">>>> Configuring Swap space"
 fallocate -l 1G /swapfile
 chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
+mkswap /swapfile > /dev/null
+swapon /swapfile > /dev/null
 echo "/swapfile   none    swap    sw    0   0" >> /etc/fstab
 sysctl vm.swappiness=10 > /dev/null
 echo "vm.swappiness=10" >> /etc/sysctl.conf
