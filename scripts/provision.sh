@@ -53,7 +53,7 @@ echo ">>>> Installing Nginx and PHP-FPM"
 apt-get install -y --force-yes -qq nginx php5-fpm &> /dev/null || exit 1
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-service nginx restart
+service nginx restart &> /dev/null || exit 1
 
 echo ">>>> Configuring Nginx and PHP-FPM"
 ln -s /etc/php5/mods-available/mailparse.ini /etc/php5/fpm/conf.d/20-mailparse.ini
@@ -69,8 +69,8 @@ sed -i "s/group = www-data/group = vagrant/" /etc/php5/fpm/pool.d/www.conf
 sed -i "s/;listen\.owner.*/listen.owner = vagrant/" /etc/php5/fpm/pool.d/www.conf
 sed -i "s/;listen\.group.*/listen.group = vagrant/" /etc/php5/fpm/pool.d/www.conf
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php5/fpm/pool.d/www.conf
-service nginx restart
-service php5-fpm restart
+service nginx restart &> /dev/null || exit 1
+service php5-fpm restart &> /dev/null || exit 1
 
 echo ">>>> Creating SSL certificates"
 mkdir /etc/nginx/ssl/
