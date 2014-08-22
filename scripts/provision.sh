@@ -73,12 +73,12 @@ service nginx restart
 service php5-fpm restart
 
 echo ">>>> Creating SSL certificates"
-mkdir -pv /etc/nginx/ssl/
-openssl genrsa -passout pass:secret -des3 -out /etc/nginx/ssl/server.key 1024
-openssl req -passin pass:secret -new -key /etc/nginx/ssl/server.key -subj "/C=UK/ST=/L=Manchester/O=Murvo Technologies/CN=tender.app" -out /etc/nginx/ssl/server.csr
+mkdir /etc/nginx/ssl/
+openssl genrsa -passout pass:secret -des3 -out /etc/nginx/ssl/server.key 1024 &> /dev/null || exit 1
+openssl req -passin pass:secret -new -key /etc/nginx/ssl/server.key -subj "/C=UK/ST=/L=Manchester/O=Murvo Technologies/CN=tender.app" -out /etc/nginx/ssl/server.csr &> /dev/null || exit 1
 cp /etc/nginx/ssl/server.key /etc/nginx/ssl/server.key.org
-openssl rsa -passin pass:secret -in /etc/nginx/ssl/server.key.org -out /etc/nginx/ssl/server.key
-openssl x509 -req -days 365 -in /etc/nginx/ssl/server.csr -signkey /etc/nginx/ssl/server.key -out /etc/nginx/ssl/server.crt
+openssl rsa -passin pass:secret -in /etc/nginx/ssl/server.key.org -out /etc/nginx/ssl/server.key &> /dev/null || exit 1
+openssl x509 -req -days 365 -in /etc/nginx/ssl/server.csr -signkey /etc/nginx/ssl/server.key -out /etc/nginx/ssl/server.crt &> /dev/null || exit 1
 
 echo ">>>> Adding vagrant user to group www-data"
 usermod -a -G www-data vagrant
